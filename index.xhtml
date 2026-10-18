@@ -1,0 +1,160 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Merry &amp; Bright &amp; CRI ≥ 95</title>
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" />
+<link rel="stylesheet" href="game.css" />
+</head>
+<body>
+<a data-phase="1" href="tree.xhtml">
+	<div>
+		<img class="text" src="menu-tree-text.png" />
+		<img class="icon" src="menu-tree.jpeg" />
+	</div>
+	<div>
+		<span />
+		<img class="checkmark" src="checkmark.jpeg" />
+	</div>
+</a>
+<a data-phase="1" href="icicles.xhtml">
+	<div>
+		<img class="text" src="menu-icicles-text.png" />
+		<img class="icon" src="menu-icicles.jpeg" />
+	</div>
+	<div>
+		<span />
+		<img class="checkmark" src="checkmark.jpeg" />
+	</div>
+</a>
+<a data-phase="1" href="sweater.xhtml">
+	<div>
+		<img class="text" src="menu-sweater-text.png" />
+		<img class="icon" src="menu-sweater.jpeg" />
+	</div>
+	<div>
+		<span />
+		<img class="checkmark" src="checkmark.jpeg" />
+	</div>
+</a>
+<img src="menu-phase2.png" id="phase-2-message" />
+<a data-phase="2" href="window.xhtml">
+	<div>
+		<img class="text" src="menu-window-text.png" />
+		<img class="icon" src="menu-window.jpeg" />
+	</div>
+	<div>
+		<span />
+		<img class="checkmark" src="checkmark.jpeg" />
+	</div>
+</a>
+<a data-phase="2" href="shelf.xhtml">
+	<div>
+		<img class="text" src="menu-shelf-text.png" />
+		<img class="icon" src="menu-shelf.jpeg" />
+	</div>
+	<div>
+		<span />
+		<img class="checkmark" src="checkmark.jpeg" />
+	</div>
+</a>
+<a data-phase="2" href="fireplace.xhtml">
+	<div>
+		<img class="text" src="menu-fireplace-text.png" />
+		<img class="icon" src="menu-fireplace.jpeg" />
+	</div>
+	<div>
+		<span />
+		<img class="checkmark" src="checkmark.jpeg" />
+	</div>
+</a>
+<div id="blue-count"><img src="menu-done.png" /><span /></div>
+<div id="blue-left"><img src="menu-blue-left.png" /><span /></div>
+<script src="game.js" />
+<script><![CDATA[
+if (phase() === 0) location = "tree.xhtml";
+
+function bump() {
+	let allDone = true;
+
+	let totalBlues = 0;
+	for (let link of $$("a")) {
+		let key = link.getAttribute("href");
+		let blueCount = state.lights[key]?.filter((l) => l === 4).length ?? 0;
+		allDone &&= state.complete[key];
+		totalBlues += blueCount;
+		link.hidden = +link.dataset.phase > phase();
+		link.querySelector(".checkmark").hidden = !state.complete[key];
+		link.querySelector("span").replaceChildren();
+		for (let i = 0; i < blueCount; i++) {
+			let img = new Image();
+			img.src = "menu-light.jpeg";
+			link.querySelector("span").append(img);
+		}
+	}
+
+	$("#phase-2-message").hidden = phase() !== 2 || state.completed["window.xhtml"] || state.completed["shelf.xhtml"] || state.completed["fireplace.xhtml"];
+	
+	$("#blue-count").hidden = !allDone;
+	$("#blue-count span").replaceChildren(...stringToImgs(String(totalBlues)));
+	$("#blue-left").hidden = allDone;
+	$("#blue-left span").replaceChildren(...stringToImgs(String(BULB_SUPPLY_BY_PHASE[phase()][4] - totalBlues)));
+
+	$("link[rel=icon]").href = allDone ? "favicon-complete.png" : "favicon-incomplete.png";
+}
+]]></script>
+<style><![CDATA[
+img {
+	zoom: .5;
+	mix-blend-mode: darken;
+}
+
+body {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	place-items: center;
+}
+
+body > :is(img, div) {
+	grid-column: span 3;
+}
+
+body > div:not([hidden]) {
+	display: flex;
+
+	> img {
+		margin-right: 16px;
+	}
+
+	> span > img {
+		margin-inline: 3px;
+	}
+}
+
+a:not([hidden]) {
+	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+
+	> :first-child {
+		grid-column: 2;
+	}
+
+	> div {
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+		align-items: center;
+	}
+
+	.icon {
+		margin: auto;
+		transition: transform .25s;
+	}
+
+	&:hover .icon {
+		transform: rotate(5deg) scale(1.1);
+	}
+}
+]]></style>
+</body>
+</html>

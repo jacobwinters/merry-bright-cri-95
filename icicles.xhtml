@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Icicles - Merry &amp; Bright &amp; CRI ≥ 95</title>
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" />
+<link rel="stylesheet" href="game.css" />
+</head>
+<body>
+<div id="field">
+<img src="icicles.jpeg" width="813" height="533" />
+<svg xmlns="http://www.w3.org/2000/svg" />
+<img src="checkmark.jpeg" class="checkmark" width="52" height="44" />
+</div>
+<div id="toolbar">
+<button data-color="1" class="active" />
+<button data-color="2" />
+<button data-color="3" />
+<button data-color="4" />
+<button data-color="0" />
+<a href="index.xhtml" />
+</div>
+<script src="game.js" />
+<script>
+circle(200, 150);
+circle(48, 182);
+circle(350, 204);
+circle(588, 240);
+circle(464, 254);
+circle(96, 282);
+circle(642, 343, { className: "light big" });
+circle(466, 346);
+circle(218, 348);
+circle(562, 354);
+circle(370, 390);
+circle(84, 436);
+circle(580, 452);
+circle(202, 458);
+circle(466, 458);
+edge(0, 1);
+edge(0, 2);
+edge(0, 5);
+edge(0, 8);
+edge(1, 5);
+edge(2, 4);
+edge(2, 10);
+edge(3, 4);
+edge(3, 6);
+edge(3, 7);
+edge(3, 9);
+edge(4, 7);
+edge(4, 9);
+edge(5, 8);
+edge(5, 11);
+edge(6, 9);
+edge(6, 12);
+edge(7, 9);
+edge(7, 10);
+edge(7, 12);
+edge(7, 14);
+edge(8, 10);
+edge(8, 11);
+edge(8, 13);
+edge(9, 12);
+edge(9, 14);
+edge(10, 13);
+edge(10, 14);
+edge(11, 13);
+edge(12, 14);
+</script>
+<style>
+.light.big {
+	width: 40px;
+	height: 40px;
+}
+</style>
+</body>
+</html>

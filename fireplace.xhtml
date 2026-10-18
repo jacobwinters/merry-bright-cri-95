@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Fireplace - Merry &amp; Bright &amp; CRI ≥ 95</title>
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" />
+<link rel="stylesheet" href="game.css" />
+</head>
+<body>
+<div id="field">
+<img src="fireplace.jpeg" width="798" height="533" />
+<svg xmlns="http://www.w3.org/2000/svg" />
+<img src="checkmark.jpeg" class="checkmark" width="52" height="44" />
+</div>
+<div id="toolbar">
+<button data-color="1" class="active" />
+<button data-color="2" />
+<button data-color="3" />
+<button data-color="4" />
+<button data-color="0" />
+<a href="index.xhtml" />
+</div>
+<script src="game.js" />
+<script>
+circle(282, 52, { className: "light big" });
+circle(528, 52, { className: "light big" });
+circle(492, 200, { className: "light twinkle" });
+circle(170, 222, { className: "light twinkle" });
+circle(564, 222, { className: "light twinkle" });
+circle(400, 246, { className: "light twinkle" });
+circle(280, 254, { className: "light twinkle" });
+circle(486, 276, { className: "light twinkle" });
+circle(568, 296, { className: "light twinkle" });
+circle(194, 302, { className: "light twinkle" });
+circle(372, 318, { className: "light twinkle" });
+circle(462, 346, { className: "light twinkle" });
+circle(294, 350, { className: "light twinkle" });
+circle(172, 372, { className: "light twinkle" });
+circle(388, 380, { className: "light twinkle" });
+circle(582, 380, { className: "light twinkle" });
+circle(486, 402, { className: "light twinkle" });
+edge(0, 1);
+edge(0, 3);
+edge(0, 5);
+edge(0, 6);
+edge(1, 2);
+edge(1, 4);
+edge(1, 5);
+edge(2, 4);
+edge(2, 5);
+edge(2, 7);
+edge(3, 6);
+edge(3, 9);
+edge(4, 7);
+edge(4, 8);
+edge(5, 6);
+edge(5, 7);
+edge(5, 10);
+edge(6, 9);
+edge(6, 10);
+edge(6, 12);
+edge(7, 8);
+edge(7, 10);
+edge(7, 11);
+edge(8, 11);
+edge(8, 15);
+edge(9, 12);
+edge(9, 13);
+edge(10, 11);
+edge(10, 12);
+edge(10, 14);
+edge(11, 14);
+edge(11, 15);
+edge(11, 16);
+edge(12, 13);
+edge(12, 14);
+edge(14, 16);
+edge(15, 16);
+
+for (let l of $$(".light.twinkle")) {
+	l.style.animationDelay = -Math.random() + "s";
+}
+</script>
+<style>
+.light.big {
+	width: 40px;
+	height: 40px;
+}
+
+@keyframes twinkle {
+	50% { opacity: 1 }
+	100% { opacity: .5 }
+}
+
+.light.twinkle {
+	animation: twinkle 1s infinite alternate;
+}
+</style>
+</body>
+</html>
